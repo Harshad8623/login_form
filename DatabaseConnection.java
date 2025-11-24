@@ -5,18 +5,22 @@ import java.sql.DriverManager;
 
 public class DatabaseConnection {
 
-    public static Connection getConnection() {
-        Connection con = null;
-        try {
+    private static final String URL = "jdbc:mysql://localhost:3306/myform";
+    private static final String USER = "root";
+    private static final String PASSWORD = "root";
+
+    public static Connection getConnection() 
+    {
+        try 
+        {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/formdb",
-                "root",
-                "root"
-            );
-        } catch (Exception e) {
-            System.out.println(e);
+            return DriverManager.getConnection(URL, USER, PASSWORD);
+        } 
+        catch (Exception e) 
+        {
+            e.printStackTrace();
+            return null;
         }
-        return con;
     }
 }
+
